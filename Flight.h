@@ -14,22 +14,10 @@ private:
 
  
 public:
-    Flight(const std::string& flight_number,
-           const std::string& departure_time,
-           int seat_capacity,
-           int seat_sold = 0)
-        : flight_number_(flight_number),
-        seat_capacity_(seat_capacity)
-    {
-        departure_time_ = departure_time;
-        //seat_sold_ = seat_sold < 0 ? 0 : seat_sold;
-        if (seat_sold_ < 0)  {
-            seat_sold_ = 0;
-        }
-        else {
-            seat_sold_ = seat_sold;
-        }
-    }
+    Flight( std::string flight_number = "",
+            std::string departure_time = "",
+           int seat_capacity = 50,
+           int seat_sold = 0);
 
     // Getters
     const string& flightNumber() const  { return flight_number_; }
@@ -43,16 +31,9 @@ public:
     void setDepartureTime(const string& dt) { departure_time_ = dt; }
 
     // Adjust capacity (if new capacity is less than seats already sold, reduce sold to fit)
-    bool setSeatCapacity(int capacity) {
-        if (capacity < 0)
-        {
-            capacity = 0; 
-            return false;
-        }
-        seat_capacity_ = capacity;
-        //if (seat_sold_ > seat_capacity_) seat_sold_ = seat_capacity_;
-        return true;
-    }
+    bool setSeatCapacity(int capacity);
+    // Sell seats
+    bool sellSeats(int number);
 
     
 };

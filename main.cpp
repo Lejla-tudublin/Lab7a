@@ -4,7 +4,8 @@ int main() {
     
 
     std::cout << "Hello, World!\n";
-    Flight flight1("AA123", "2024-07-01 10:00", 150, 50);
+    //Flight flight1("AA123", "2024-07-01 10:00", 150, 50);
+    Flight flight1 ("Default"); // Using default constructor
     cout << "Flight Number: " << flight1.flightNumber() << "\n";
     cout << "Departure Time: " << flight1.departureTime() << "\n";      
     cout << "Seat Capacity: " << flight1.seatCapacity() << "\n";
