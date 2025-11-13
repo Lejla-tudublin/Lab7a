@@ -34,3 +34,38 @@ bool Flight::sellSeats(int number){
     cout << "Not enough available seats to sell " << number << " seats.\n";
     return false;
 }
+
+ostream &operator<<(ostream &os, const Flight &flight){
+        os <<  flight.flight_number_ << "(" << flight.seat_capacity_ << ") departs at" ;
+        os << flight.departure_time_ << " sold: " << flight.seat_sold_ ;
+        os << "Seats \n";
+        for(int i = 0; i < 10; ++i){
+            if (!flight.additional_info_[i].empty()){
+                os << "  - " << flight.additional_info_[i] << "\n";
+            }
+        }
+        return os;
+    }
+
+bool Flight::sold_out (){
+    if (seatsAvailable() == 0){
+        return true;
+    }
+    else {
+        return false;
+    }   
+}
+bool Flight::add_additional_info(const string& info){
+    bool added = false;
+    for (int i = 0; i < 10; ++i){
+        if (additional_info_[i].empty()){
+            additional_info_[i] = info;
+            added = true;
+            break;
+        }
+    }
+    if (!added){
+        cout << "No space to add more additional info.\n";
+    }
+    return added;
+}
